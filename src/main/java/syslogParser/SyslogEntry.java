@@ -2,6 +2,10 @@ package syslogParser;
 
 import java.time.LocalDateTime;
 
+/**
+ * This class holds information parsed from
+ * a syslog entry.
+ */
 public class SyslogEntry {
     private LocalDateTime parsedAt;
     private LocalDateTime dateTime;
