@@ -1,4 +1,4 @@
-package sshdParser;
+package sshdProcessParser;
 
 import java.util.regex.Pattern;
 

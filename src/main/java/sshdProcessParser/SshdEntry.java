@@ -1,10 +1,23 @@
-package sshdParser;
+package sshdProcessParser;
+
+import processParsers.IProcessEntry;
 
 /**
  * This class holds information about the status
  * parsed from the sshd log entry.
  */
-public class SshdEntry {
+public class SshdEntry implements IProcessEntry {
+
+    private Status status;
+
+    public SshdEntry(Status status) {
+        this.status = status;
+    }
+
+    public String getData() {
+        return this.status.toString().toLowerCase();
+    }
+
     /**
      * Enum representing the status for a given
      * sshd log entry.
@@ -40,9 +53,4 @@ public class SshdEntry {
             }
         }
     }
-
-    private Status status;
-    public void setStatus(Status status) { this.status = status; }
-    public Status getStatus() { return this.status; }
-
 }

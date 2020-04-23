@@ -39,5 +39,16 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.6.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20190722</version>
+        </dependency>
     </dependencies>
 </project>
