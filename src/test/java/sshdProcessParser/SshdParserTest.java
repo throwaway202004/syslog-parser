@@ -15,33 +15,33 @@ public class SshdParserTest {
     public void parser_disconnectAndSessionClosed_HasStatusStop() {
         var parser = new Parser();
         SshdEntry result = parser.parse(disconnect);
-        assertEquals(SshdEntry.Status.STOP, result.getData());
+        assertEquals(SshdEntry.Status.STOP.toString(), result.getData());
 
         result = parser.parse(disconnected);
-        assertEquals(SshdEntry.Status.STOP, result.getData());
+        assertEquals(SshdEntry.Status.STOP.toString(), result.getData());
 
         result = parser.parse(sessionClosed);
-        assertEquals(SshdEntry.Status.STOP, result.getData());
+        assertEquals(SshdEntry.Status.STOP.toString(), result.getData());
     }
 
     @Test
     public void parser_accepted_HasStatusAllowed() {
         var parser = new Parser();
         SshdEntry result = parser.parse(accepted);
-        assertEquals(SshdEntry.Status.ALLOWED, result.getData());
+        assertEquals(SshdEntry.Status.ALLOWED.toString(), result.getData());
     }
 
     @Test
     public void parser_sessionOpened_HasStatusStart() {
         var parser = new Parser();
         SshdEntry result = parser.parse(sessionOpened);
-        assertEquals(SshdEntry.Status.START, result.getData());
+        assertEquals(SshdEntry.Status.START.toString(), result.getData());
     }
 
     @Test
     public void parser_someOtherString_HasStatusUnknown() {
         var parser = new Parser();
         SshdEntry result = parser.parse(someOtherString);
-        assertEquals(SshdEntry.Status.UNKNOWN, result.getData());
+        assertEquals(SshdEntry.Status.UNKNOWN.toString(), result.getData());
     }
 }

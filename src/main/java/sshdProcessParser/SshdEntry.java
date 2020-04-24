@@ -15,7 +15,7 @@ public class SshdEntry implements IProcessEntry {
     }
 
     public String getData() {
-        return this.status.toString().toLowerCase();
+        return this.status.toString();
     }
 
     /**
