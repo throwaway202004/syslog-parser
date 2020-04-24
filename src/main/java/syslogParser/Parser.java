@@ -1,6 +1,6 @@
 package syslogParser;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 /**
  * Front end for the RFC3164 syslog parser.
@@ -26,7 +26,7 @@ public class Parser {
 
         var entry = new SyslogEntry();
 
-        entry.setParsedAt(LocalDateTime.now());
+        entry.setParsedAt(OffsetDateTime.now());
         entry.setDateTime(matchGroup.getDateTime());
         entry.setPriority(matchGroup.getPriority());
         entry.setHost(matchGroup.getHost());

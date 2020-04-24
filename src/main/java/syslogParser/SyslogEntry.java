@@ -1,14 +1,14 @@
 package syslogParser;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 /**
  * This class holds information parsed from
  * a syslog entry.
  */
 public class SyslogEntry {
-    private LocalDateTime parsedAt;
-    private LocalDateTime dateTime;
+    private OffsetDateTime parsedAt;
+    private OffsetDateTime dateTime;
     private int priority;
     private String host;
     private String process;
@@ -19,20 +19,20 @@ public class SyslogEntry {
      * Get the date and time parsed from the Syslog entry
      * @return LocalDateTime
      */
-    public LocalDateTime getDateTime() {
+    public OffsetDateTime getDateTime() {
         return dateTime;
     }
 
     /**
      * Set the date of the Syslog entry
      */
-    public void setDateTime(LocalDateTime dateTime) { this.dateTime = dateTime; }
+    public void setDateTime(OffsetDateTime dateTime) { this.dateTime = dateTime; }
 
     /**
      * Get the date and time of when the syslog file was parsed
      * @return LocalDateTime
      */
-    public LocalDateTime getParsedAt() {
+    public OffsetDateTime getParsedAt() {
         return parsedAt;
     }
 
@@ -40,7 +40,7 @@ public class SyslogEntry {
      * Set the date and time when the syslog file was parsed
      * @param parsedAt
      */
-    public void setParsedAt(LocalDateTime parsedAt) {
+    public void setParsedAt(OffsetDateTime parsedAt) {
         this.parsedAt = parsedAt;
     }
 
