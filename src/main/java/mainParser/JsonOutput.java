@@ -3,8 +3,11 @@ package mainParser;
 import org.json.JSONObject;
 import processParsers.IProcessEntry;
 import syslogParser.SyslogEntry;
+import java.time.format.DateTimeFormatter;
 
-
+/**
+ * A class implementing the specified JSON structure.
+ */
 public class JsonOutput {
     private static final String TIMESTAMP = "@timestamp";
     private static final String MESSAGE = "message";
@@ -21,49 +24,35 @@ public class JsonOutput {
 
     private final SyslogEntry syslogEntry;
     private final IProcessEntry processEntry;
+    private final String ipAddress;
 
-    public JsonOutput(SyslogEntry syslogEntry, IProcessEntry processEntry) {
+    public JsonOutput(SyslogEntry syslogEntry, IProcessEntry processEntry, String ipAddress) {
         this.syslogEntry = syslogEntry;
         this.processEntry = processEntry;
+        this.ipAddress = ipAddress;
     }
 
-    /*
-{
-	"@timestamp": "tidstämpel då meddelandet konsumerades i format yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX",
-	"message": "loggmeddelandet i sin helhet",
-	"agent": {
-		"id": "hostnamnet från loggposten"
-	},
-	"host": {
-		"ip": "IP-nummer från konsumenten"
-	},
-	"event": {
-		"created": "Tidsstämpel från loggmeddelandet i format yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX",
-		"type": "Någon av access, allowed, denied, error, start, stop, unknown. Välj passande."
-	},
-	"process": {
-		"pid": "PID från loggande process. Från loggmeddelandet",
-		"name": "Loggande process namn. Från loggmeddelandet"
-	}
-}
- */
+    /**
+     * Format the output according to the specification in spec.json
+     * @return JSONObject
+     */
     public JSONObject toJson() {
         var agent = new JSONObject();
         agent.put(ID, syslogEntry.getHost());
 
         var host = new JSONObject();
-        host.put(IP, "127.0.0.1");
+        host.put(IP, ipAddress);
 
         var event = new JSONObject();
-        event.put(CREATED, syslogEntry.getDateTime());
-        event.put(TYPE, processEntry.getData());
+        event.put(CREATED, syslogEntry.getDateTime().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        event.put(TYPE, processEntry.getData().toLowerCase());
 
         var process = new JSONObject();
         process.put(PID, syslogEntry.getPid());
         process.put(NAME, syslogEntry.getProcess());
 
         JSONObject json = new JSONObject();
-        json.put(TIMESTAMP, syslogEntry.getParsedAt());
+        json.put(TIMESTAMP, syslogEntry.getParsedAt().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
         json.put(MESSAGE, syslogEntry.getMessage());
         json.put(AGENT, agent);
         json.put(HOST, host);
