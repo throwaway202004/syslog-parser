@@ -50,7 +50,7 @@ public class Consumer {
 
         MainParser parser = new MainParser(Arrays.asList(new sshdProcessParser.Parser()), ipAddress);
 
-        System.out.print("Consumer is running.");
+        System.out.println("Consumer is running.");
 
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
